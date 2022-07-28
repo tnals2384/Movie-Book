@@ -1,0 +1,21 @@
+{{>layout/header}}
+<style>
+    a {color:black;}
+</style>
+<h1><a href="/movies">Movies</a></h1>
+<h1><a href="/books">Books</a></h1>
+<div class="row">
+    <div class="col-md-4">
+        {{#userName}}
+            Logged in as: <span id="user">{{userName}}</span>
+            <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+        {{/userName}}
+        {{^userName}}
+            <a href="/oauth2/authorization/google" class="btn btn-dark active" role="button">Google Login</a>
+            <a href="/oauth2/authorization/naver" class="btn btn-dark active" role="button">Naver Login</a>
+        {{/userName}}
+    </div>
+</div>
+<br>
+
+</div>
