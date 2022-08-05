@@ -1,6 +1,5 @@
 package com.tnals.moviebook.web;
 
-import com.tnals.moviebook.domain.movies.MoviesRepository;
 import com.tnals.moviebook.service.MoviesService;
 import com.tnals.moviebook.web.dto.MoviesResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,7 @@ public class IndexController {
     public String moviesIndex(Model model) {
         model.addAttribute("movies", moviesService.findAllDesc());
 
-        return "movies-index";
+        return "movies";
     }
 
     @GetMapping("/movies/save")
@@ -32,11 +31,17 @@ public class IndexController {
         return "movies-save";
     }
 
+    @GetMapping("movies/{id}")
+    public String moviesLookUp(@PathVariable Long id,Model model) {
+        MoviesResponseDto dto = moviesService.findById(id);
+        model.addAttribute("movie",dto);
+        return "movies-lookup";
+    }
     @GetMapping("/movies/update/{id}")
     public String moviesUpdate(@PathVariable Long id, Model model) {
         MoviesResponseDto dto = moviesService.findById(id);
         model.addAttribute("movie",dto);
 
-        return "movies-update.mustache";
+        return "movies-update";
     }
 }
